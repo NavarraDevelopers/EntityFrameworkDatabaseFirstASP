@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ColegioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="edad" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Asignaturas">
+    <Key>
+      <PropertyRef Name="cod" />
+    </Key>
+    <Property Name="cod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripción" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_alta" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AsignaturasAlumnos">
+    <Key>
+      <PropertyRef Name="idAlumno" />
+      <PropertyRef Name="codAsignatura" />
+    </Key>
+    <Property Name="idAlumno" Type="int" Nullable="false" />
+    <Property Name="codAsignatura" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AsignaturasAlumnos_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AsignaturasAlumnos" Type="Self.AsignaturasAlumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AsignaturasAlumnos">
+        <PropertyRef Name="idAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AsignaturasAlumnos_Asignaturas">
+    <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="1" />
+    <End Role="AsignaturasAlumnos" Type="Self.AsignaturasAlumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asignaturas">
+        <PropertyRef Name="cod" />
+      </Principal>
+      <Dependent Role="AsignaturasAlumnos">
+        <PropertyRef Name="codAsignatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ColegioModelStoreContainer">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignaturas" EntityType="Self.Asignaturas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AsignaturasAlumnos" EntityType="Self.AsignaturasAlumnos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AsignaturasAlumnos_Alumnos" Association="Self.FK_AsignaturasAlumnos_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="AsignaturasAlumnos" EntitySet="AsignaturasAlumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AsignaturasAlumnos_Asignaturas" Association="Self.FK_AsignaturasAlumnos_Asignaturas">
+      <End Role="Asignaturas" EntitySet="Asignaturas" />
+      <End Role="AsignaturasAlumnos" EntitySet="AsignaturasAlumnos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

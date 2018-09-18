@@ -1,0 +1,67 @@
+﻿@model WebApplication2.Alumnos
+
+@{
+    ViewBag.Title = "DetailsAlumn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailsAlumn</h2>
+
+<div>
+    <h4>Alumnos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.edad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.edad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompleto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

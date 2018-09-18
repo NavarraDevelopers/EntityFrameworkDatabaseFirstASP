@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ColegioModelStoreContainer" CdmEntityContainer="ColegioEntities1">
+    <EntitySetMapping Name="Alumnos">
+      <EntityTypeMapping TypeName="ColegioModel.Alumnos">
+        <MappingFragment StoreEntitySet="Alumnos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Asignaturas">
+      <EntityTypeMapping TypeName="ColegioModel.Asignaturas">
+        <MappingFragment StoreEntitySet="Asignaturas">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripción" ColumnName="descripción" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AsignaturasAlumnos" TypeName="ColegioModel.AsignaturasAlumnos" StoreEntitySet="AsignaturasAlumnos">
+      <EndProperty Name="Alumnos">
+        <ScalarProperty Name="id" ColumnName="idAlumno" />
+      </EndProperty>
+      <EndProperty Name="Asignaturas">
+        <ScalarProperty Name="cod" ColumnName="codAsignatura" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

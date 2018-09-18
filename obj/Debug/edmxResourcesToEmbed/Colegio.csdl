@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ColegioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="edad" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Asignaturas" Relationship="Self.AsignaturasAlumnos" FromRole="Alumnos" ToRole="Asignaturas" />
+  </EntityType>
+  <EntityType Name="Asignaturas">
+    <Key>
+      <PropertyRef Name="cod" />
+    </Key>
+    <Property Name="cod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripción" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_alta" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.AsignaturasAlumnos" FromRole="Asignaturas" ToRole="Alumnos" />
+  </EntityType>
+  <Association Name="AsignaturasAlumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+    <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ColegioEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+    <EntitySet Name="Asignaturas" EntityType="Self.Asignaturas" />
+    <AssociationSet Name="AsignaturasAlumnos" Association="Self.AsignaturasAlumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Asignaturas" EntitySet="Asignaturas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
